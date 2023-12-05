@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank you for ordering!</title>
+
+    <!--USING BOOTSTRAP 4 -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel = "stylesheet" href ="style.css">
+
+    <!--send get request to server for ./products.js-->
+    <script src="./products.js"></script>
+</head>
+<body>
+    
+    <!--Web Head-->
+    <div class="jumbotron text-center custom-gray-bg text-dark p-4">
+        <h1 class="h2">Welcome to Reyn's Cards</h1>
+        <p class="lead">Discover our collection of high-quality cards.</p>
+        <div class="mt-4">
+            <!--<a href="./index.html" class="btn btn-outline-primary btn-lg mr-3">Home</a>
+            <a href="./store.html" class="btn btn-outline-primary btn-lg">Store</a> -->
+        </div>
+    </div>
+
+    <div class="container offset-container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="WelcomeDiv" class="text-right">
+                    <!-- Content of WelcomeDiv goes here -->
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <img src="./images/PercySimple.png" alt="Product Image" width="130" height="200">
+            </div>
+        </div>
+    </div>
+    <!--Create the table with a dark thred-->
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <!--Define headers-->
+                    <th>Image</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Extended Price</th>
+                </tr>
+            </thead>
+            <tbody id="invoiceTable">
+                <!-- Product rows will be added dynamically using JavaScript -->
+            </tbody>
+            <!--in the footer, subtotal, tax, shipping, and total will always be on bottom-->
+            <tfoot>
+                <tr>
+                    <td colspan="4">Sub-total</td>
+                    <td id="subtotal_cell">$0.00</td>
+                </tr>
+                <tr>
+                    <td colspan="4">Tax @ 5.75%</td>
+                    <td id="tax_cell">$0.00</td>
+                </tr>
+                <tr>
+                    <td colspan="4">Shipping</td>
+                    <td id="shipping_cell">$0.00</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><strong>Total</strong></td>
+                    <td id="total_cell"><strong>$0.00</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+        
+    
+    <!--This is to trigger a popover-->
+    <script>
+        $(document).ready(function(){
+          $('[data-toggle="popover"]').popover();
+        });
+      </script>
+
+<!--This one goes back to the store and has hidden variables to store the order username and fullname-->
+<div class="container mt-4 d-flex justify-content-center">
+    <form id="keepShoppingForm" action="/return_to_store" method="post" class="mr-3">
+        <input type="hidden" name="order" id="orderInputStore">
+        <input type="hidden" name="username" id="usernameEntered">
+        <input type="hidden" name="fullName" id="fullNameHere">
+        <button type="submit" class="btn btn-secondary btn-lg">Keep Shopping</button>
+    </form>
+    
+    <!--This one completes the purchase form with the order and the username-->
+    <form id="completePurchaseForm" action="/complete_purchase" method="post">
+        <input type="hidden" name="order" id="orderInputComplete">
+        <input type="hidden" name="username" id="usernameLogout">
+        <button type="submit" class="btn btn-primary btn-lg">Complete Purchase</button>
+    </form>
+</div>
+
+
+</body>
+
+
+
+<script src="invoice.js" type="module"></script>
+</html>

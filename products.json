@@ -1,0 +1,45 @@
+[
+	{
+		"card": "Sensei's Divining Top (Borderless Foil)",
+		"price": 25.00,
+		"image": "./images/sensei.jpg",
+		"qty_available": 50,
+		"content": "Commander Masters 2022, Lightly Played"
+	},
+	{
+		"card": "The Great Henge (Borderless)",
+		"price": 42.86,
+		"image": "./images/henge.png",
+		"qty_available": 20,
+		"content": "Throne of Eldraine, Lightly Played"
+	},
+    {
+		"card": "Ancient Copper Dragon (Showcase)",
+		"price": 54.37,
+		"image": "./images/dragon.jpg",
+		"qty_available": 35,
+		"content": "Commander Legends Battle For Bauldurs Gate, Moderate Play"
+	},
+    {
+		"card": "Force of Will (Borderless)",
+		"price": 147.20,
+		"image": "./images/force.jpg",
+		"qty_available": 60,
+		"content": "The Famous Free Counterspell"
+	},
+    {
+		"card": "Black Lotus (Alpha Set)",
+		"price": 13800.00,
+		"image": "./images/lotus.jpg",
+		"qty_available": 5,
+		"content": "The Infamous Black Lotus, Prestine Condition"
+	},
+	{
+		"card": "The One Ring (1 of 1)",
+		"price": 2300000.00,
+		"image": "./images/theone.jpg",
+		"qty_available": 1,
+		"content": "One Ring to Rule Them All, Previously Owned by Post Malone"
+	}
+    
+]

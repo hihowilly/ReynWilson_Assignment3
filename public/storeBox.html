@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Page</title>
+    <!--USING BOOTSTRAP 4 -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript" src="./products.js"></script>
+    <link rel = "stylesheet" href ="style.css">
+
+</head>
+<body>
+    <!--Web Head-->
+  <!--  <div class="jumbotron text-center custom-gray-bg text-dark p-4">
+        <h1 class="h2">Welcome to Reyn's Cards</h1>
+        <p class="lead">Discover our collection of high-quality cards.</p>
+        <div class="mt-4">
+            <a href="./index.html" id = "toIndex" class="btn btn-outline-primary btn-lg mr-3">Home</a>
+            <a href="./store.html" id = "toCard" class="btn btn-outline-primary btn-lg">Cards</a>
+            <a href="./storeBox.html" id = "toBox" class="btn btn-outline-primary btn-lg">Deck Boxes</a>
+            <a href="./storeBox.html" id = "toMat" class="btn btn-outline-primary btn-lg">Playmats</a>
+        </div>
+    </div>-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./index.html">Reyn's Cards</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Buy Now
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="./store.html">Cards</a>
+                        <a class="dropdown-item" href="./storeBox.html">Deck Boxes</a>
+                        <a class="dropdown-item" href="./storeMats.html">Playmats</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="./invoice.html" id = "cartText">View Cart</a>
+                <div id="loginPlaceholder">
+                    <a class="nav-item nav-link" href="./login.html" id="signInLink">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+        
+    <!--Modal for thank you message--> 
+    <div class="modal fade" id="thanksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thank You For Ordering!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="col text-center">
+                <img src="./images/PercyCart.png" alt="Product Image" width="400" height="400">
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Defines the WelcomeDiv and percyImage areas, nothing shown if not signed in-->
+    <div class="container">
+        
+        <div class="col text-center">
+            <div id="WelcomeDiv"></div>
+        </div><div class="col text-center">
+            <div id="percyImage"></div>
+        </div>
+       
+    </div>
+            
+    <div class="container">
+        
+        <div class="col text-center">
+            <div id="errorDiv"></div>
+        </div>
+       
+    </div>
+
+    <!--Define a form with method POST hidden values of username and first name-->
+    <form name="qty_form" action="process_form" method="POST">
+        <input type="hidden" name="username" id="usernameEntered">
+        <input type="hidden" name="fullName" id="fullNameHere">
+        <input type ="hidden"name="storeName"id="storeName">
+        <input type="hidden" name="type" id="type">
+        <h1><span id="top_title"></span></h1>
+        <div class="container">
+            <div class="row">
+                <!--Rows will by added dynamically-->
+            </div>
+        </div>
+
+        <!--Create a centered button for submission-->
+        <footer class="text-center py-4">
+            <div class="row">
+                <div class="col">
+                    
+                </div>
+            </div>
+        </footer>
+    </form>
+</body>
+<script src="storeBox.js"></script>
+</html>

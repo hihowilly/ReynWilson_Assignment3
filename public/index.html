@@ -18,22 +18,157 @@
     <link rel = "stylesheet" href ="style.css">
 </head>
 <body>
-    <!--Web Head-->
-    <div class="jumbotron text-center custom-gray-bg text-dark p-4">
-        <h1 class="h2">Welcome to Reyn's Cards</h1>
-        <p class="lead">Discover our collection of high-quality cards.</p>
-        <div class="mt-4">
-            <a href="./index.html" class="btn btn-outline-primary btn-lg mr-3">Home</a>
-            <a href="./store.html" class="btn btn-outline-primary btn-lg">Store</a>
+    <!--Web Head Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./index.html">Reyn's Cards</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Buy Now
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="./store.html">Cards</a>
+                        <a class="dropdown-item" href="./storeBox.html">Deck Boxes</a>
+                        <a class="dropdown-item" href="./storeMats.html">Playmats</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="./invoice.html" id = "cartText">View Cart</a>
+                <div id="loginPlaceholder">
+                    <a class="nav-item nav-link" href="./login.html" id="signInLink">Sign In</a>
+                </div>
+            </div>
         </div>
-    </div>
+    </nav>
     
 </div>
+<!-- Displays Thank You Message When Purchase Went Through-->
+<div class="modal fade" id="thanksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Thank You For Ordering!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="col text-center">
+            <img src="./images/PercyCart.png" alt="Product Image" width="400" height="400">
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- insert more here for the body of the home page TBD-->
+  <div class="container">
+        
+    <div class="col text-center">
+        <div id="WelcomeDiv"></div>
+    </div><div class="col text-center">
+        <div id="percyImage"></div>
+    </div>
+   
+</div>
 
 <div class="text-center">
     <img src="./images/PercyMagicIndex.png"  alt="Product Image" width="500" height="500">
 </div>
 </body>
+<script>
+//login stuff
+let signin = decodeURIComponent(getCookieValue('signIn'));
+let username = decodeURIComponent(getCookieValue('username')); 
+let fullName = decodeURIComponent(getCookieValue('fName'));
+
+//replaces log in button with sign out
+document.addEventListener("DOMContentLoaded", function() {
+    
+
+    if (signin == 'true') {
+        document.getElementById("loginPlaceholder").innerHTML = 
+            `<form id="signOutForm" action="signOutKeepCart" method="POST">
+            <button type="submit" class="text-button">Sign Out</button>
+            </form>`;
+    }
+});
+
+//same as store and others
+let cards = decodeURIComponent(getCookieValue('card'));
+let mat = decodeURIComponent(getCookieValue('mat'));
+let boxes = decodeURIComponent(getCookieValue('box'));
+console.log(cards + ","+ mat);
+console.log(mat);
+if(cards == 'null'){
+    console.log('cardsBad');
+    cards = '0,0,0,0,0,0';
+}
+if(boxes == 'null'){
+    console.log('cardsBad');
+    boxes = '0,0,0,0,0,0';
+}
+if(mat == 'null'){
+    console.log('cardsBad');
+    mat = '0,0,0,0,0,0';
+}
+let totalString = boxes + ","+cards+","+mat;
+let arrayString = totalString.split(",");
+var order = arrayString.map(function(item) {
+    return +item;
+});
+console.log(order);
+var numInCart = order.reduce(function(accumulator, currentValue) {
+    return accumulator + currentValue;
+}, 0);
+//tracks cart size
+document.getElementById('cartText').innerHTML = `View Cart (${numInCart})`;
+let params = (new URL(document.location)).searchParams;
+let thankYouMessage = params.get('thankYou');
+
+//fills in the welcomeDiv
+if(username !== null && fullName !== '' && fullName !== 'null' && signin == 'true'){
+    //disable buttons
+    
+    //sets the welcomeDiv, and adds the image and message depending on size 
+    document.getElementById('WelcomeDiv').innerHTML += `<h3 class="text">Welcome ${fullName}!</h3>`;
+    document.getElementById('percyImage').innerHTML += `<img src="./images/PercyStore.png" alt="Product Image" width="250" height="250">`;
+    
+    //fill hidden value
+    document.getElementById('usernameEntered').value = username;
+
+}
+
+//if the thankyou message appears, that means they finalized the purchase. show the modal
+if(thankYouMessage == 'true'){
+    console.log(thankYouMessage);
+    $(document).ready(function(){
+        $("#thanksModal").modal('show');
+    });
+}
+
+function getCookieValue(cookieName){
+    let cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++){
+        let cookiePair = cookies[i].trim().split('=');
+        if(cookiePair[0] === cookieName){
+            return cookiePair[1]
+        }
+        
+    }
+    return null;
+};
+</script>
 </html>

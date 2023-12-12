@@ -1,5 +1,6 @@
 [
 	{
+		"type": "card",
 		"card": "Sensei's Divining Top (Borderless Foil)",
 		"price": 25.00,
 		"image": "./images/sensei.jpg",
@@ -7,6 +8,7 @@
 		"content": "Commander Masters 2022, Lightly Played"
 	},
 	{
+		"type":"card",
 		"card": "The Great Henge (Borderless)",
 		"price": 42.86,
 		"image": "./images/henge.png",
@@ -14,6 +16,7 @@
 		"content": "Throne of Eldraine, Lightly Played"
 	},
     {
+		"type":"card",
 		"card": "Ancient Copper Dragon (Showcase)",
 		"price": 54.37,
 		"image": "./images/dragon.jpg",
@@ -21,6 +24,7 @@
 		"content": "Commander Legends Battle For Bauldurs Gate, Moderate Play"
 	},
     {
+		"type":"card",
 		"card": "Force of Will (Borderless)",
 		"price": 147.20,
 		"image": "./images/force.jpg",
@@ -28,6 +32,7 @@
 		"content": "The Famous Free Counterspell"
 	},
     {
+		"type":"card",
 		"card": "Black Lotus (Alpha Set)",
 		"price": 13800.00,
 		"image": "./images/lotus.jpg",
@@ -35,11 +40,109 @@
 		"content": "The Infamous Black Lotus, Prestine Condition"
 	},
 	{
+		"type":"card",
 		"card": "The One Ring (1 of 1)",
 		"price": 2300000.00,
 		"image": "./images/theone.jpg",
 		"qty_available": 1,
 		"content": "One Ring to Rule Them All, Previously Owned by Post Malone"
+	},
+	{
+		"type":"box",
+		"card": "Ultimate Guard Boulder Black",
+		"price": 14.00,
+		"image": "./images/BlackBox.jpg",
+		"qty_available": 4,
+		"content": "Protect Your Cards with the Ultimate Guard Boulder that Stores 100 Cards!"
+	},
+	{
+		"type":"mat",
+		"card": "Calix Playmat",
+		"price": 25.00,
+		"image": "./images/CalixMat.jpeg",
+		"qty_available": 9,
+		"content": "Have a Fun, Nice Looking Playmat Featuring Calix!"
+	},
+	{
+		"type":"mat",
+		"card": "Kiora Playmat",
+		"price": 25.00,
+		"image": "./images/KioraMat.jpeg",
+		"qty_available": 13,
+		"content": "Have a Fun, Nice Looking Playmat Featuring Kiora!"
+	},
+	{
+		"type":"mat",
+		"card": "Nahiri Playmat",
+		"price": 25.00,
+		"image": "./images/NahiriMat.jpeg",
+		"qty_available": 11,
+		"content": "Have a Fun, Nice Looking Playmat Featuring Nahiri!"
+	},
+	{
+		"type":"mat",
+		"card": "Nissa Playmat",
+		"price": 25.00,
+		"image": "./images/NissaMat.jpeg",
+		"qty_available": 10,
+		"content": "Have a Fun, Nice Looking Playmat Featuring Nissa!"
+	},
+	{
+		"type":"mat",
+		"card": "Sarkan Playmat",
+		"price": 25.00,
+		"image": "./images/SarkanMat.jpeg",
+		"qty_available": 14,
+		"content": "Have a Fun, Nice Looking Playmat Featuring Sarkan!"
+	},
+	{
+		"type":"mat",
+		"card": "Tyvar Playmat",
+		"price": 25.00,
+		"image": "./images/TyvarMat.jpeg",
+		"qty_available": 5,
+		"content": "Have a Fun, Nice Looking Playmat Featuring Tyvar!"
+	},
+	{
+		"type":"box",
+		"card": "Ultimate Guard Boulder Cyan",
+		"price": 14.00,
+		"image": "./images/CyanBox.jpg",
+		"qty_available": 6,
+		"content": "Protect Your Cards with the Ultimate Guard Boulder that Stores 100 Cards!"
+	},
+	
+	{
+		"type":"box",
+		"card": "Ultimate Guard Boulder Green",
+		"price": 14.00,
+		"image": "./images/GreenBox.jpg",
+		"qty_available": 9,
+		"content": "Protect Your Cards with the Ultimate Guard Boulder that Stores 100 Cards!"
+	},
+	{
+		"type":"box",
+		"card": "Ultimate Guard Boulder Yellow",
+		"price": 14.00,
+		"image": "./images/YellowBox.jpg",
+		"qty_available": 5,
+		"content": "Protect Your Cards with the Ultimate Guard Boulder that Stores 100 Cards!"
+	},
+	{
+		"type":"box",
+		"card": "Ultimate Guard Boulder Blue/White",
+		"price": 14.00,
+		"image": "./images/BlueWhiteBox.jpg",
+		"qty_available": 6,
+		"content": "Protect Your Cards with the Ultimate Guard Boulder that Stores 100 Cards!"
+	},
+	{
+		"type":"box",
+		"card": "Ultimate Guard Arkhive",
+		"price": 50.00,
+		"image": "./images/BigBox.jpg",
+		"qty_available": 3,
+		"content": "Protect Your Cards with the Ultimate Guard Arkhive that Stores 1000+ Cards! Also Stores 10 Boulders!"
 	}
-    
+	
 ]

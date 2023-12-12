@@ -7,6 +7,19 @@
   height: 300px;
 }
 
+.imgMat{
+
+  width: 300px;
+  height: 300px;
+}
+
+.imgBox{
+
+  width: 250px;
+  height: 275px;
+}
+
+
 .img-small{
   width: 100px;
   height: 150px;
@@ -24,7 +37,17 @@
 
 
 }
-
+.text-button {
+  
+  background: none;
+  border: none;
+  padding: 8px;
+  color: rgb(174, 174, 255); /* or any other color you prefer */
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit; /* to inherit font styles from the body */
+  font-size: inherit;
+}
 .btn-outline-primary:hover {
   background-color: #0056b3;
   border-color: #0056b3;

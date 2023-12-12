@@ -22,14 +22,37 @@
 <body>
     
     <!--Web Head-->
-    <div class="jumbotron text-center custom-gray-bg text-dark p-4">
-        <h1 class="h2">Welcome to Reyn's Cards</h1>
-        <p class="lead">Discover our collection of high-quality cards.</p>
-        <div class="mt-4">
-            <!--<a href="./index.html" class="btn btn-outline-primary btn-lg mr-3">Home</a>
-            <a href="./store.html" class="btn btn-outline-primary btn-lg">Store</a> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./index.html">Reyn's Cards</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Buy Now
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="./store.html">Cards</a>
+                        <a class="dropdown-item" href="./storeBox.html">Deck Boxes</a>
+                        <a class="dropdown-item" href="./storeMats.html">Playmats</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="./invoice.html" id = "cartText">View Cart</a>
+                <div id="loginPlaceholder">
+                    <a class="nav-item nav-link" href="./login.html" id="signInLink">Sign In</a>
+                </div>
+            </div>
         </div>
-    </div>
+    </nav>
+    
 
     <div class="container offset-container">
         <div class="row">
@@ -91,13 +114,7 @@
 
 <!--This one goes back to the store and has hidden variables to store the order username and fullname-->
 <div class="container mt-4 d-flex justify-content-center">
-    <form id="keepShoppingForm" action="/return_to_store" method="post" class="mr-3">
-        <input type="hidden" name="order" id="orderInputStore">
-        <input type="hidden" name="username" id="usernameEntered">
-        <input type="hidden" name="fullName" id="fullNameHere">
-        <button type="submit" class="btn btn-secondary btn-lg">Keep Shopping</button>
-    </form>
-    
+
     <!--This one completes the purchase form with the order and the username-->
     <form id="completePurchaseForm" action="/complete_purchase" method="post">
         <input type="hidden" name="order" id="orderInputComplete">
@@ -108,8 +125,6 @@
 
 
 </body>
-
-
 
 <script src="invoice.js" type="module"></script>
 </html>

@@ -1,66 +1,98 @@
 //set up params from headder, order array, and error value
 let params = (new URL(document.location)).searchParams;
 let error;
-let order = [];
+//shows type that store is displaying
+let type = 'card';
 
 //get if there was an error before
 error = params.get('error');
-//gets username from url
-let username = params.get('username');
-//console.log(username);
-//fill order array with item ammounts from previous attempts
-params.forEach((value,key) => {
-    if (key.startsWith('prod')) {
-            order.push(parseInt(value));
-        }
+
+//gets store name for redirect
+let storeName = 'store';
+document.getElementById('storeName').value += storeName;
+
+//gets params from cookies stored, if logged in, replace sign in with sign out
+
+let signin = decodeURIComponent(getCookieValue('signIn'));
+let username = decodeURIComponent(getCookieValue('username')); // Replace with your logic to get the username
+let fullName = decodeURIComponent(getCookieValue('fName'));
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+
+    if (signin == 'true') {
+        // Replace the Sign In link with a cute icon and the username
+        document.getElementById("loginPlaceholder").innerHTML = 
+            `<form id="signOutForm" action="signOutKeepCart" method="POST">
+            <button type="submit" class="text-button">Sign Out</button>
+            </form>`;
+    }
 });
+//gets the cookies for the products, if they are null fill in with 0's
+
+let cards = decodeURIComponent(getCookieValue('card'));
+let mat = decodeURIComponent(getCookieValue('mat'));
+let boxes = decodeURIComponent(getCookieValue('box'));
+console.log(cards);
+if(cards == 'null'){
+    console.log('cardsBad');
+    cards = '0,0,0,0,0,0';
+}
+if(boxes == 'null'){
+    console.log('cardsBad');
+    boxes = '0,0,0,0,0,0';
+}
+if(mat == 'null'){
+    console.log('cardsBad');
+    mat = '0,0,0,0,0,0';
+}
+
+
+//append and create array to generate rows with
+let totalString = boxes + ","+cards+","+mat;
+let arrayString = totalString.split(",");
+var order = arrayString.map(function(item) {
+    return +item;
+});
+console.log(order);
+var numInCart = order.reduce(function(accumulator, currentValue) {
+    return accumulator + currentValue;
+}, 0);
+
+document.getElementById('cartText').innerHTML = `View Cart (${numInCart})`;
 
 //gets params from url
-let fullName = params.get('fullName');
-let totalOnline = params.get('totalOnline');
-let thankYouMessage = params.get('thankYou');
 
-//if the thankyoumessage appears, that means they finalized the purchase. show the modal
-if(thankYouMessage == 'true'){
-    console.log(thankYouMessage);
-    $(document).ready(function(){
-        $("#thanksModal").modal('show');
-    });
-}
+let totalOnline = params.get('totalOnline');
+
 
 //puts the fullName in the field
 document.getElementById('fullNameHere').value = fullName;
+document.getElementById('type').value = type;
 
 //checks if username is not empty, if there is a username, populate it all and disable buttons
-if(username !== null && fullName !== ''){
+if(username !== null && fullName !== '' && fullName !== 'null' && signin == 'true'){
     //disable buttons
-    document.getElementById('toIndex').addEventListener('click', function (event) {
-        event.preventDefault();
-      });
-    document.getElementById('toStore').addEventListener('click', function (event) {
-        event.preventDefault();
-    });
-
+    
     //sets the welcomeDiv, and adds the image and message depending on size 
     document.getElementById('WelcomeDiv').innerHTML += `<h3 class="text">Welcome ${fullName}!</h3>`;
-    if(Number(totalOnline) == 1)
-    {
-        document.getElementById('WelcomeDiv').innerHTML += `<h5 class ="text">You are the only one shopping right now!</h5><br>`;
-        document.getElementById('percyImage').innerHTML += `<img src="./images/PercyStore.png" alt="Product Image" width="250" height="250">`;
-    }
-    else{
-        document.getElementById('WelcomeDiv').innerHTML += `<h5 class ="text">There are ${totalOnline} users shopping right now!</h5><br>`;
-        document.getElementById('percyImage').innerHTML += `<img src="./images/PercyStore.png" alt="Product Image" width="250" height="250">`;
-    }
+    document.getElementById('percyImage').innerHTML += `<img src="./images/PercyStore.png" alt="Product Image" width="250" height="250">`;
+    
     //fill hidden value
     document.getElementById('usernameEntered').value = username;
 
 }
-
+overflow = decodeURIComponent(params.get('overflow'));
+console.log(overflow)
+console.log(overflow !== 'null' && overflow !== null && typeof(overflow) !== null);
 //if there is an error submitted, then show the error text in errorDiv
 if(error == 'true'){
     
     document.getElementById('errorDiv').innerHTML += `<h2 class="text-danger">Input Error - Please Fix!</h2><br>`;
+}
+if(overflow == '' || (overflow !== 'null' && overflow !== null && typeof(overflow) !== null)){
+    console.log('here');
+    document.getElementById('errorDiv').innerHTML += `<h2 class="text-danger">${overflow}</h2><br>`;
 }
 
 /*
@@ -74,6 +106,7 @@ For every product in the array:
     Run the validation to populate errors just incase an initial value is passed
 */
 for (let i = 0; i < products.length; i++) {
+    if(type == products[i]['type']){
     document.querySelector('.row').innerHTML += 
         `<div class="col-md-6 product_card mb-4">
         <div class="card">
@@ -85,15 +118,20 @@ for (let i = 0; i < products.length; i++) {
                 <p class="card-text">
                     Price: $${(products[i].price).toFixed(2)}<br>
                     Available: ${products[i].qty_available}<br>
-                    Total Sold: ${products[i].total_sold}
+                    Total Sold: ${products[i].total_sold}<br>
+                    In Cart: ${order[i]}
                 </p>
                 
-                <input type="text" placeholder="0" name="quantity_textbox" id="${[i]}" class="form-control mb-2" oninput="validateQuantity(this)" value="${order[i] !== 0 && order[i] !== undefined ? order[i] : ''}" onload="validateQuantity(this)" style="border-color: black;">
+                <input type="text" placeholder="0" name="quantity_textbox" id="${[i]}" class="form-control mb-2" oninput="validateQuantity(this)" onload="validateQuantity(this)" style="border-color: black;">
                 <p id="invalidQuantity${[i]}" class="text-danger"></p>
+                    <div class="d-flex justify-content-center">
+                        <input type="submit" value="Add to Cart" class="btn btn-secondary">
+                    </div>
                 </div>
             </div>
         </div>`
         validateQuantity(document.getElementById(`${[i]}`));
+    }
  ;}
 //runs to generate a validation message
 function validateQuantity(quantity) {
@@ -130,3 +168,15 @@ function validateQuantity(quantity) {
     // Set the valMessage to the innerHTML of the section
     document.getElementById(`invalidQuantity${quantity.id}`).innerHTML = valMessage;
 }
+
+function getCookieValue(cookieName){
+    let cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++){
+        let cookiePair = cookies[i].trim().split('=');
+        if(cookiePair[0] === cookieName){
+            return cookiePair[1]
+        }
+        
+    }
+    return null;
+};

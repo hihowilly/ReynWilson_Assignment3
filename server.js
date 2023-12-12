@@ -447,7 +447,7 @@ app.post("/process_form", function (request, response) {
 
     if (loginRequests.includes(sesID)) {
 
-      response.redirect(`${storeName}.html?` + url + `&username=${username}` + `&totalOnline=${loginUsers.length}` + `&fullName=${request.body.fullName}`);
+      response.redirect(`${storeName}.html?`);
 
     }
     else {
